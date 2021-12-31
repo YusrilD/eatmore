@@ -1,4 +1,5 @@
 import 'package:eatmore/model/categories.dart';
+import 'package:eatmore/model/top_brand.dart';
 import 'package:eatmore/source/app_image.dart';
 import 'package:eatmore/source/sizer.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,46 @@ class _DashboardState extends State<Dashboard> {
             searchBar(),
             categories(),
             eventsSections(),
+            topBrands(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget topBrands() {
+    return Container(
+      child: GridView.builder(
+        shrinkWrap: true,
+        itemCount: listTopBrand.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+        ),
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  width: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.6),
+                      width: 0.3,
+                    ),
+                  ),
+                  child: Image.asset(listTopBrand[index].image),
+                ),
+              ),
+              Text(
+                listTopBrand[index].name,
+                style: GoogleFonts.poppins(),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

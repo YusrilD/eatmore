@@ -13,4 +13,13 @@ class AppImage{
   // events
   static String events1 = prefixImg + "event1.png";
   static String events2 = prefixImg + "event2.png";
+
+  static String kfc = prefixImg + "kfc.png";
+  static String jj = prefixImg + "jj.png";
+  static String mcd = prefixImg + "mcd.png";
+  static String sb = prefixImg + "sb.png";
+  static String solaria = prefixImg + "solaria.png";
+  static String sw = prefixImg + "sw.png";
+  static String bk = prefixImg + "bk.png";
+  static String wendys = prefixImg + "wendys.png";
 }
