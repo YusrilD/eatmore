@@ -9,4 +9,8 @@ class AppImage{
   static String facebook = prefixImg + "facebook_image.png";
   static String google = prefixImg + "google_image.png";
   static String twitter = prefixImg + "twitter_image.png";
+
+  // events
+  static String events1 = prefixImg + "event1.png";
+  static String events2 = prefixImg + "event2.png";
 }
