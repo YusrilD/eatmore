@@ -22,4 +22,24 @@ class AppImage{
   static String sw = prefixImg + "sw.png";
   static String bk = prefixImg + "bk.png";
   static String wendys = prefixImg + "wendys.png";
+
+  //favorites
+  static String eg = prefixImg + "eg.png";
+  static String geprek = prefixImg + "geprek.png";
+  static String lodeh = prefixImg + "lodeh.png";
+  static String nasgor = prefixImg + "nasgor.png";
+  static String pia = prefixImg + "pia.png";
+  static String pp = prefixImg + "pp.png";
+  static String soto = prefixImg + "soto.png";
+  static String tc = prefixImg + "tc.png";
+
+  // resto
+  static String wrBakso = prefixImg + "wr_bakso.jpg";
+  static String wrMie = prefixImg + "wr_mie.jpeg";
+  static String wrPakmin = prefixImg + "wr_pakmin.jpg";
+  static String wrPempek = prefixImg + "wr_pempek.png";
+  static String wrRawon = prefixImg + "wr_rawon.jpg";
+  static String wrSegoKuning = prefixImg + "wr_sk.jpg";
+  static String wrSoto = prefixImg + "wr_soto.jpg";
+  static String wrTahuTelor = prefixImg + "wr_tt.jpg";
 }

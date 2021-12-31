@@ -1,4 +1,5 @@
 import 'package:eatmore/model/categories.dart';
+import 'package:eatmore/model/favorites.dart';
 import 'package:eatmore/model/top_brand.dart';
 import 'package:eatmore/source/app_image.dart';
 import 'package:eatmore/source/sizer.dart';
@@ -19,15 +20,34 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            appBar(),
-            searchBar(),
-            categories(),
-            eventsSections(),
-            topBrands(),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBar(),
+              searchBar(),
+              categories(),
+              eventsSections(),
+              titleTopBrands(),
+              topBrands(),
+              titleFavorites(),
+              favorites(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding titleTopBrands() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Text(
+        "Top brands for you",
+        style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -35,10 +55,16 @@ class _DashboardState extends State<Dashboard> {
 
   Widget topBrands() {
     return Container(
+      margin: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 8,
+      ),
       child: GridView.builder(
         shrinkWrap: true,
         itemCount: listTopBrand.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 10,
           crossAxisCount: 4,
         ),
         itemBuilder: (context, index) {
@@ -48,7 +74,7 @@ class _DashboardState extends State<Dashboard> {
                 flex: 1,
                 child: Container(
                   padding: const EdgeInsets.all(6),
-                  width: 50,
+                  width: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
@@ -59,9 +85,71 @@ class _DashboardState extends State<Dashboard> {
                   child: Image.asset(listTopBrand[index].image),
                 ),
               ),
-              Text(
-                listTopBrand[index].name,
-                style: GoogleFonts.poppins(),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  listTopBrand[index].name,
+                  style: GoogleFonts.poppins(),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Padding titleFavorites() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Text(
+        "Favorite foods",
+        style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget favorites() {
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 8,
+      ),
+      child: GridView.builder(
+        shrinkWrap: true,
+        itemCount: listFavorites.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 10,
+          crossAxisCount: 4,
+        ),
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  width: 80,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.6),
+                      width: 0.3,
+                    ),
+                  ),
+                  child: Image.asset(listFavorites[index].image),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  listFavorites[index].name,
+                  style: GoogleFonts.poppins(),
+                ),
               ),
             ],
           );
@@ -153,32 +241,35 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Row eventsSections() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(left: 8, right: 4),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
+  Widget eventsSections() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: 8, right: 4),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25),
+                ),
               ),
+              child: Image.asset(AppImage.events1),
             ),
-            child: Image.asset(AppImage.events1),
           ),
-        ),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(left: 8, right: 4),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: 8, right: 4),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25),
+                ),
               ),
+              child: Image.asset(AppImage.events2),
             ),
-            child: Image.asset(AppImage.events2),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

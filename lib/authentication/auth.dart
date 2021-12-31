@@ -34,7 +34,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             ),
           ),
           Positioned.fill(
-            top: kToolbarHeight / 2,
+            top: kToolbarHeight,
             child: Align(
               alignment: Alignment.topCenter,
               child: Image.asset(
@@ -45,7 +45,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           ),
           Positioned.fill(
             right: 15,
-            top: 15,
+            top: kToolbarHeight,
             child: Align(
               alignment: Alignment.topRight,
               child: Container(
