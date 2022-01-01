@@ -1,5 +1,6 @@
 import 'package:eatmore/model/categories.dart';
 import 'package:eatmore/model/favorites.dart';
+import 'package:eatmore/model/nearest.dart';
 import 'package:eatmore/model/top_brand.dart';
 import 'package:eatmore/source/app_image.dart';
 import 'package:eatmore/source/sizer.dart';
@@ -33,6 +34,8 @@ class _DashboardState extends State<Dashboard> {
               topBrands(),
               titleFavorites(),
               favorites(),
+              titleNearest(),
+              nearest(),
             ],
           ),
         ),
@@ -73,7 +76,7 @@ class _DashboardState extends State<Dashboard> {
               Expanded(
                 flex: 1,
                 child: Container(
-                  padding: const EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(10),
                   width: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -122,7 +125,7 @@ class _DashboardState extends State<Dashboard> {
         shrinkWrap: true,
         itemCount: listFavorites.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisSpacing: 20,
+          crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 4,
         ),
@@ -132,14 +135,14 @@ class _DashboardState extends State<Dashboard> {
               Expanded(
                 flex: 1,
                 child: Container(
-                  padding: const EdgeInsets.all(6),
-                  width: 80,
-                  decoration: BoxDecoration(
+                  // padding: const EdgeInsets.all(6),
+                  width: 100,
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.grey.withOpacity(0.6),
-                      width: 0.3,
-                    ),
+                    // border: Border.all(
+                    //   color: Colors.grey.withOpacity(0.6),
+                    //   width: 0.3,
+                    // ),
                   ),
                   child: Image.asset(listFavorites[index].image),
                 ),
@@ -156,6 +159,84 @@ class _DashboardState extends State<Dashboard> {
         },
       ),
     );
+  }
+
+  Padding titleNearest() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Text(
+        "Nearest restaurant",
+        style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget nearest() {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: listNearest.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 8,
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20),
+              ),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.6),
+                  blurRadius: 3.0,
+                  spreadRadius: 1.0,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    image: DecorationImage(
+                      image: ExactAssetImage(
+                        listNearest[index].image,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // child: Image.asset(listNearest[index].image),
+                ),
+                Text(
+                  listNearest[index].resto,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  listNearest[index].category,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget categories() {
